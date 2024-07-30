@@ -1,0 +1,60 @@
+<!DOCTYPE HTML>
+<html lang='en'>
+<head>
+<meta charset='utf-8'>
+<title>My first Web application (Using JSP)</title>
+<script>
+function ramu(frm)
+{
+var name=frm.nm.value.trim();
+if(name.length==0)
+{
+alert("Name required");
+frm.nm.focus();
+return false;
+}
+var v='ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz .';
+var e=0;
+while(e<name.length)
+{
+if(v.indexOf(name.charAt(e))==-1)
+{
+alert('Invalid charcters in name, only alphabets,space and . are allowed');
+frm.nm.focus();
+return false;
+}
+e++;
+}
+var ct=frm.ct.value.trim();
+if(ct.length==0)
+{
+var ctErrorSection=document.getElementById('ctErrorSection');
+ctErrorSection.innerHTML='Required';
+frm.ct.focus();
+return false;
+}
+if(document.getElementById('ml').checked==false && document.getElementById('fe').checked==false)
+{
+alert('Select Gender');
+return false;
+}
+return true;
+}
+</script>
+</head>
+<body>
+<h3>Personal information</h3>
+<form action='/vapasone/aaa.jsp' onsubmit='return ramu(this)'>
+Name
+<input type='text' id='nm' name='nm'><br>
+City
+<input type='text' id='ct' name='ct'>
+<span id='ctErrorSection'></span><br>
+Gender
+<input type='radio' id='ml' name='gdr' value='M'>Male
+&nbsp;&nbsp;&nbsp;&nbsp;
+<input type='radio' id='fe' name='gdr' value='F'>Female<br>
+<button type='submit'>Save</button>
+</form>
+</body>
+</html>
